@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -7,6 +8,11 @@ import { Component } from '@angular/core';
 })
 export class HomepageComponent {
 
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  images: string[] = []
+  constructor() {
+    this.images = [1, 2, 3].map((n) => `assets/media/hp-carousel-${n}.jpg`);
+    console.log(this.images)
+  }
+
 
 }
