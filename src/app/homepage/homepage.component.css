@@ -5,8 +5,43 @@
     
 }
 
+.title-container {
+    text-align: center;
+    font-size: 30px;
+    margin: 30px 0px;
+}
 
-.carousel-container {
+.carousel-container img {
+    max-height: 600px !important;
+    min-width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.card-section {
     height: 30%;
-    width: 100%
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.card-section-title {
+    text-align: center;
+    font-size: 25px;
+    margin: 20px 0px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.hp-card {
+    width: 400px;
+    max-height: 600px;
+}
+
+.hp-card img {
+    max-height: 200px !important;
 }
