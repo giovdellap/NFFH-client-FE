@@ -40,24 +40,23 @@
         <div class="card-container">
             <mat-card class="hp-card" *ngFor="let card of cards">
                 <mat-card-header>
-                  <mat-card-title>{{card.title}}</mat-card-title>
-                  <mat-card-subtitle>{{card.seller}}</mat-card-subtitle>
+                    <mat-card-title>{{card.title}}</mat-card-title>
+                    <mat-card-subtitle>{{card.seller}}</mat-card-subtitle>
                 </mat-card-header>
                 <img mat-card-image src={{card.image}}>
                 <mat-card-content>
-                  <p>{{card.description}}</p>
-                  <div class="card-details">
-                    <p *ngIf="card.weight; else quantityBlock">Price: {{card.price}}/kg</p>
-                    <ng-template #quantityBlock>
-                        <p>Price: {{card.price}} each</p>
-                    </ng-template>
-
-                  </div>
+                    <p>{{card.description}}</p>
+                    <div class="card-details">
+                        <p *ngIf="card.weight; else quantityBlock">Price: {{card.price}}/kg</p>
+                        <ng-template #quantityBlock>
+                            <p>Price: {{card.price}} each</p>
+                        </ng-template>
+                    </div>
                 </mat-card-content>
                 <mat-card-actions>
-                  <button mat-button>BUY NOW</button>
+                    <button mat-button>BUY NOW</button>
                 </mat-card-actions>
-              </mat-card>
+            </mat-card>
         </div>
     </div>
     <div class="footer-container">

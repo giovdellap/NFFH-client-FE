@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { switchMap, tap } from 'rxjs';
+import { BaseStore } from 'src/app/connections/connectionTypes';
 import { APIService } from '../../connections/api.service';
 
 @Component({
@@ -8,7 +11,41 @@ import { APIService } from '../../connections/api.service';
 })
 export class StoresListPageComponent {
 
+  currentPage: number = 0;
+  total: number = 0;
+  stores: BaseStore[] = [];
+
+  area: string = '';
+  areas: string[] = [];
+  areaSelector = new FormControl();
+
+  showError = false;
+
   constructor(private api: APIService) {
-    
+    this.api.getLocationsList().subscribe(res => {
+      this.areas = res.areas;
+    })
+
+    this.areaSelector.valueChanges.pipe(
+      tap(x => this.area = x),
+      switchMap(x => this.api.getStoresList(1, x))
+    ).subscribe(res => {
+      this.currentPage = res.page;
+      this.total = res.total;
+      this.stores = res.stores;
+      this.showError = res.total === 0;
+    });
+
   }
+
+  changePageEvent(page: number) {
+    console.log('aaaaa', page);
+    this.currentPage = page;
+    this.api.getStoresList(page, this.area).subscribe(res => {
+      this.currentPage = res.page;
+      this.total = res.total;
+      this.stores = res.stores;
+    })
+  } 
+  
 }

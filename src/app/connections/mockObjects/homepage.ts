@@ -1,21 +1,4 @@
-import { HomepageCardResponse, LoginResponse } from "./connectionTypes";
-
-/**
- * LOGIN
- */
-
-const loginResponse: LoginResponse = {
-    token: "aaaaaeeeee",
-    success: true,
-    name: "Utente di Prova"
-}
-
-export { loginResponse };
-
-
-/**
- * HOMEPAGE
- */
+import { HomepageCardResponse } from "../connectionTypes";
 
 const homepageCardsResponse: HomepageCardResponse = {
     cards: [{

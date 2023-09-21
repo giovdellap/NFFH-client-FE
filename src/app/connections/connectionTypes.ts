@@ -22,3 +22,25 @@ export interface HomepageCardResponse {
     cards: HomepageCard[]
 }
 
+/**
+ * STORES LIST PAGE
+ */
+
+export interface StoresListResponse {
+    zone: string,
+    stores: BaseStore[],
+    page: number,
+    total: number //number of pages
+}
+
+export interface BaseStore {
+    id: string,
+    name: string,
+    image: string,
+    location: string
+}
+
+export interface Areas {
+    areas: string[]
+}
+
