@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbCarousel, NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APIService } from './connections/api.service';
-import { HomepageComponent } from './homepage/homepage.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegistrationPageComponent } from './registration-page/registration-page.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
+import { StoresListPageComponent } from './pages/stores-list-page/stores-list-page.component';
 import { MaterialModule } from './utils/material.module';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MaterialModule } from './utils/material.module';
     AppComponent,
     LoginPageComponent,
     RegistrationPageComponent,
-    HomepageComponent
+    HomepageComponent,
+    StoresListPageComponent
   ],
   imports: [
     BrowserModule,

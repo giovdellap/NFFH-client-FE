@@ -1,5 +1,7 @@
-1) add a couple pages to routing V 
-2) Import material V
-2) implement API service V
-3) design APIs
-4) implement mock service V
+PAGES:
+    - personal page
+    - stores list page
+    - store page
+    - info page
+
+Tema Material

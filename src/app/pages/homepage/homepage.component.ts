@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { APIService } from '../connections/api.service';
-import { HomepageCard } from '../model/homepage';
+import { APIService } from '../../connections/api.service';
+import { HomepageCard } from '../../model/homepage';
 
 
 @Component({
