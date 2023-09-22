@@ -44,3 +44,18 @@ export interface Areas {
     areas: string[]
 }
 
+export interface Product {
+    title: string,
+    seller: string,
+    image: string,
+    description: string,
+    price: number,
+    weight: boolean
+}
+
+export interface StoreProducts {
+    products: Product[],
+    page: number,
+    total: number
+}
+

@@ -31,7 +31,7 @@
 .store-card {
     width: 30%;
     margin: 20px 0px;
-    background-color: 
+    background-color: var(--surface); 
 }
 
 .card-title {

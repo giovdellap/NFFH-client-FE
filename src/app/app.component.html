@@ -1,6 +1,10 @@
 <mat-toolbar class="toolbar-flex">
     
     <div></div>
+    <button
+        mat-button color ="primary"
+        routerLink="/stores"
+        >STORES</button>
     <button *ngIf="!logged; else notLogged"
         mat-button color ="primary"
         routerLink="/login"

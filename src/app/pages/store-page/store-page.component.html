@@ -1,0 +1,38 @@
+<div class="main-container">
+    <div class="store-detail-container">
+        <div class="name-section">
+            <h1 class="title">{{name}}</h1>
+        </div>
+        <div class="image-section">
+            <img class="image" src="{{image}}">
+        </div>
+        <div class="address-section">
+            <p class="location">{{location}}</p>
+        </div>
+    </div>
+    <div class="products-section">
+        <div class="products-title">
+            <p>OUR PRODUCTS</p>
+        </div>
+        <div class="products-cards">
+            <mat-card class="card" *ngFor="let product of products">
+                <mat-card-header>
+                    <mat-card-title>{{product.title}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src={{product.image}}>
+                <mat-card-content>
+                    <p>{{product.description}}</p>
+                    <div class="card-details">
+                        <p *ngIf="product.weight; else quantityBlock">Price: {{product.price}}/kg</p>
+                        <ng-template #quantityBlock>
+                            <p>Price: {{product.price}} each</p>
+                        </ng-template>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>BUY NOW</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

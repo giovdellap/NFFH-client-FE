@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { UserService } from '../user.service';
-import { Areas, HomepageCardResponse, LoginRequest, LoginResponse, StoresListResponse } from './connectionTypes';
+import { Areas, BaseStore, HomepageCardResponse, LoginRequest, LoginResponse, StoreProducts, StoresListResponse } from './connectionTypes';
 import { homepageCardsResponse } from './mockObjects/homepage';
 import { loginResponse } from './mockObjects/login';
+import { store, storeProducts1, storeProducts2 } from './mockObjects/store';
 import { areasList, storeslistresponse1, storeslistresponse2 } from './mockObjects/storesList';
 
 @Injectable({
@@ -71,6 +72,29 @@ export class APIService {
       return new Observable<StoresListResponse>(observer => {
         if(page === 1) observer.next(storeslistresponse1);
         if(page === 2) observer.next(storeslistresponse2);
+        observer.complete();
+      })
+    }
+  }
+
+  getStore(id: string) {
+    if(this.serviceMode == 1) {
+      return this.http.get<BaseStore>(this.url+'/store/'+id);
+    } else {
+      return new Observable<BaseStore>(observer => {
+        observer.next(store);
+        observer.complete();
+      })
+    }
+  }
+
+  getProducts(id: string, page: number) {
+    if(this.serviceMode == 1) {
+      return this.http.get<StoreProducts>(this.url+'/store/'+id+'/products/'+page);
+    } else {
+      return new Observable<StoreProducts>(observer => {
+        if(page === 1) observer.next(storeProducts1);
+        if(page === 2) observer.next(storeProducts2);
         observer.complete();
       })
     }

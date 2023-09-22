@@ -12,6 +12,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 import { StoresListPageComponent } from './pages/stores-list-page/stores-list-page.component';
 import { MaterialModule } from './utils/material.module';
+import { StorePageComponent } from './pages/store-page/store-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MaterialModule } from './utils/material.module';
     LoginPageComponent,
     RegistrationPageComponent,
     HomepageComponent,
-    StoresListPageComponent
+    StoresListPageComponent,
+    StorePageComponent
   ],
   imports: [
     BrowserModule,

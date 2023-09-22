@@ -1,6 +1,6 @@
 PAGES:
     - personal page
-    - stores list page
+    - stores list page V
     - store page
     - info page
 
