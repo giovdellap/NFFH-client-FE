@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
+import { CartService } from 'src/app/cart.service';
 import { APIService } from 'src/app/connections/api.service';
 import { Product } from 'src/app/connections/connectionTypes';
+import { CartProduct } from 'src/app/model/cart';
 
 @Component({
   selector: 'app-store-page',
@@ -15,13 +17,15 @@ export class StorePageComponent {
   name: string = '';
   location: string = '';
   image: string = '';
+  mapsURL = "https://www.google.com/maps/search/?api=1&query=";
 
-  products: Product[] = [];
+  products: CartProduct[] = [];
   page: number = 0;
   total: number = 0;
 
   constructor(
     private api: APIService,
+    private cart: CartService,
     private route: ActivatedRoute
   ) {
     this.storeID = String(this.route.snapshot.paramMap.get('id'));
@@ -30,12 +34,13 @@ export class StorePageComponent {
         this.name = res.name;
         this.location = res.location;
         this.image = res.image;
+        this.mapsURL = this.mapsURL + encodeURI(this.location);
       }),
       switchMap(res => this.api.getProducts(this.storeID, 1))
     ).subscribe(res => {
       this.page = res.page;
       this.total = res.total;
-      this.products = res.products;
+      this.products = this.getCartProducts(res.products);
     })
   }
 
@@ -45,8 +50,36 @@ export class StorePageComponent {
     this.api.getProducts(this.storeID, page).subscribe(res => {
       this.page = res.page;
       this.total = res.total;
-      this.products = res.products;
+      this.products = this.getCartProducts(res.products);
     })
-  } 
+  }
+
+  getCartProducts(products: Product[]): CartProduct[] {
+    var toReturn: CartProduct[] = [];
+    products.forEach(x => {
+      toReturn.push({
+        product: x,
+        quantity: this.cart.checkProduct(x)
+      })
+    });
+    return toReturn;
+  }
+
+  newQuantity(item: CartProduct, add: boolean) {
+    console.log('1', item, '2', add);
+    var newQuantity = item.quantity;
+    if(add) {
+      newQuantity = newQuantity+1;
+    } else {
+      newQuantity = newQuantity-1;
+    }
+    console.log(newQuantity)
+    this.cart.updateProduct(item.product, newQuantity);
+    const index = this.products.indexOf(item);
+    var newItem = {...this.products[index]};
+    newItem.quantity = newQuantity;
+    this.products.splice(index, 1, newItem);
+    console.log(newItem)
+  }
 
 }

@@ -8,6 +8,9 @@
         </div>
         <div class="address-section">
             <p class="location">{{location}}</p>
+            <button mat-button>
+                <a href={{mapsURL}} target="_blank">OPEN IN MAPS</a>
+            </button>
         </div>
     </div>
     <div class="products-section">
@@ -15,24 +18,36 @@
             <p>OUR PRODUCTS</p>
         </div>
         <div class="products-cards">
-            <mat-card class="card" *ngFor="let product of products">
-                <mat-card-header>
-                    <mat-card-title>{{product.title}}</mat-card-title>
+            <mat-card class="card" *ngFor="let item of products">
+                <mat-card-header class="card-header">
+                    <mat-card-title class="card-title">{{item.product.title}}</mat-card-title>
                 </mat-card-header>
-                <img mat-card-image src={{product.image}}>
-                <mat-card-content>
-                    <p>{{product.description}}</p>
+                <img mat-card-image src={{item.product.image}}>
+                <mat-card-content class="card-content">
+                    <p class="card-description">{{item.product.description}}</p>
                     <div class="card-details">
-                        <p *ngIf="product.weight; else quantityBlock">Price: {{product.price}}/kg</p>
+                        <p *ngIf="item.product.weight; else quantityBlock">Price: {{item.product.price}}/kg</p>
                         <ng-template #quantityBlock>
-                            <p>Price: {{product.price}} each</p>
+                            <p>Price: {{item.product.price}} each</p>
                         </ng-template>
                     </div>
                 </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>BUY NOW</button>
+                <mat-card-actions class="card-actions">
+                    <div class="quantity-picker">
+                        <button mat-icon-button (click)="newQuantity(item, false)" disabled="{{item.quantity === 0}}">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <p>{{item.quantity}}</p>
+                        <button mat-icon-button (click)="newQuantity(item, true)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <button mat-button class="buy-button">ADD TO CART</button>
                 </mat-card-actions>
             </mat-card>
         </div>
+    </div>
+    <div class="paginator-container" *ngIf="total > 1">
+        <ngb-pagination [collectionSize]="total*12" [pageSize]="12" [(page)]="page" size="lg" (pageChange)="changePageEvent($event)"></ngb-pagination>
     </div>
 </div>

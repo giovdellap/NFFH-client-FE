@@ -9,6 +9,7 @@ const store: BaseStore = {
 
 const products: Product[] = [
     {
+        id: '1',
         title: 'Cucumbers',
         seller: '22',
         image: 'https://www.finedininglovers.com/sites/g/files/xknfdk626/files/2022-06/Type%20of%20cucumber.jpg',
@@ -17,6 +18,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '2',
         title: 'Peppers',
         seller: '22',
         image: 'https://www.rigeneracremona.it/site_new/wp-content/uploads/2020/07/immagini-peperoni.jpg',
@@ -25,6 +27,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '3',
         title: 'Pumpkins',
         seller: '22',
         image: 'https://cdn.cosedicasa.com/wp-content/uploads/2019/11/zucca.jpg',
@@ -33,6 +36,7 @@ const products: Product[] = [
         weight: false
     },
     {
+        id: '4',
         title: 'Cucumbers',
         seller: '22',
         image: 'https://www.finedininglovers.com/sites/g/files/xknfdk626/files/2022-06/Type%20of%20cucumber.jpg',
@@ -41,6 +45,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '5',
         title: 'Peppers',
         seller: '22',
         image: 'https://www.rigeneracremona.it/site_new/wp-content/uploads/2020/07/immagini-peperoni.jpg',
@@ -49,6 +54,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '6',
         title: 'Pumpkins',
         seller: '22',
         image: 'https://cdn.cosedicasa.com/wp-content/uploads/2019/11/zucca.jpg',
@@ -57,6 +63,7 @@ const products: Product[] = [
         weight: false
     },
     {
+        id: '7',
         title: 'Cucumbers',
         seller: '22',
         image: 'https://www.finedininglovers.com/sites/g/files/xknfdk626/files/2022-06/Type%20of%20cucumber.jpg',
@@ -65,6 +72,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '8',
         title: 'Peppers',
         seller: '22',
         image: 'https://www.rigeneracremona.it/site_new/wp-content/uploads/2020/07/immagini-peperoni.jpg',
@@ -73,6 +81,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '9',
         title: 'Pumpkins',
         seller: '22',
         image: 'https://cdn.cosedicasa.com/wp-content/uploads/2019/11/zucca.jpg',
@@ -81,6 +90,7 @@ const products: Product[] = [
         weight: false
     },
     {
+        id: '10',
         title: 'Cucumbers',
         seller: '22',
         image: 'https://www.finedininglovers.com/sites/g/files/xknfdk626/files/2022-06/Type%20of%20cucumber.jpg',
@@ -89,6 +99,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '11',
         title: 'Peppers',
         seller: '22',
         image: 'https://www.rigeneracremona.it/site_new/wp-content/uploads/2020/07/immagini-peperoni.jpg',
@@ -97,6 +108,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '12',
         title: 'Pumpkins',
         seller: '22',
         image: 'https://cdn.cosedicasa.com/wp-content/uploads/2019/11/zucca.jpg',
@@ -105,6 +117,7 @@ const products: Product[] = [
         weight: false
     },
     {
+        id: '1',
         title: 'Cucumbers',
         seller: '22',
         image: 'https://www.finedininglovers.com/sites/g/files/xknfdk626/files/2022-06/Type%20of%20cucumber.jpg',
@@ -113,6 +126,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '1',
         title: 'Peppers',
         seller: '22',
         image: 'https://www.rigeneracremona.it/site_new/wp-content/uploads/2020/07/immagini-peperoni.jpg',
@@ -121,6 +135,7 @@ const products: Product[] = [
         weight: true
     },
     {
+        id: '1',
         title: 'Pumpkins',
         seller: '22',
         image: 'https://cdn.cosedicasa.com/wp-content/uploads/2019/11/zucca.jpg',

@@ -45,6 +45,7 @@ export interface Areas {
 }
 
 export interface Product {
+    id: string, 
     title: string,
     seller: string,
     image: string,
