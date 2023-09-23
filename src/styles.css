@@ -4,15 +4,13 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root {
-    --primary: #157145;
-    --primarylight: #57A773;
-    --onprimary: #AB1D4F;
-    --secondary: #6A8EAE;
-    --secondarylight: #9BD1E5;
-    --onsecondary: #ccaa8f;
-    --surface: #00d1e6;
-    --onsurface: #ff9d90;
-    --background:#9BD1E5;
-    --onbackground: #d75c29;
-    --error: #3f4fd5;
+    --darkprimary: #388E3C;
+    --primary: #4CAF50;
+    --primarylight: #C8E6C9;
+    --text: #ffffff;
+    --accent: #FF5722;
+    --primarytext: #212121;
+    --secondarytext: #757575;
+    --divider: #F5F5F5;
+    --background: #EEEEEE;
 }

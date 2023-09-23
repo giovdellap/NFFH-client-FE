@@ -1,5 +1,5 @@
 .main-container {
-    height: 100%;
+    height: inherit;
     width: 100%;
     background-color: var(--background);
 }
@@ -8,7 +8,8 @@
     text-align: center;
     font-size: 30px;
     padding: 30px 0px;
-    color: var(--onbackground)
+    color: var(--primary);
+    font-weight: 700;
 }
 
 .carousel-container: {
@@ -56,11 +57,12 @@ ngb-carousel {
 }
 
 .footer-container {
-    height: 20%;
+    margin-top: 30px;
+    height: 10%;
     padding-top: 30px;
-    background-color: rgb(39,39,69);
+    background-color: var(--primarylight);
     font-size: 20px;
-    color: red;
+    color: var(--text);
     display: flex;
     flex-direction: column;
     align-items: center;

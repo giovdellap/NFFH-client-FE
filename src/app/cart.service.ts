@@ -12,6 +12,7 @@ export class CartService {
   constructor() { }
 
   updateProduct(product: Product, quantity: number) {
+    console.log('cart 1', this.cart.toString());
     var productInCart = false;
     var actualIndex = -1;
     this.cart.forEach(x => {
@@ -22,7 +23,9 @@ export class CartService {
     });
     if(productInCart) {
       if(quantity === 0) {
+        console.log('in right if')
         this.cart.splice(actualIndex, 1);
+        console.log('cart 2', this.cart.toString())
       } else {
         var updatedItem = {...this.cart[actualIndex]};
         updatedItem.quantity = quantity;
@@ -42,6 +45,10 @@ export class CartService {
       if(x.product == product) quantity = x.quantity;
     });
     return quantity;
+  }
+
+  getCart() {
+    return this.cart;
   }
 
   

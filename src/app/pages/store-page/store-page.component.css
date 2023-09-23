@@ -3,13 +3,14 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--background);
+    height: inherit;
+    min-height: 100%;
 }
 
 .store-detail-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--onbackground);
 }
 
 .name-section {
@@ -17,8 +18,9 @@
 }
 
 .title {
-    font-weight: bold;
+    font-weight: 600;
     font-size: 2.5em;
+    color: var(--darkprimary);
 }
 
 .address-section {
@@ -31,6 +33,7 @@
 
 .location {
     font-size: 1.5em;
+    color: var(--secondarytext);
 }
 
 .image {
@@ -45,7 +48,7 @@
 }
 
 .products-title {
-    color: var(--onprimary);
+    color: var(--accent);
     font-size: 2.2em;
 }
 
@@ -59,8 +62,7 @@
 .card {
     width: 30%;
     margin: 20px 0px;
-    background-color: var(--surface);
-    color: var(--onsurface);
+    background-color: var(--divider);
 }
 
 .card img{
@@ -71,18 +73,26 @@
 .card-header {
     display: flex;
     justify-content: center;
+    background-color: var(--divider);
+
 }
 
 .card-title {
-    font-weight: bold;
+    font-weight: 600;
+    color: var(--accent);
 }
 
 .card-content {
     padding-top: 15px;
 }
 
+.card-description {
+    color: var(--secondarytext);
+}
+
 .card-details {
     font-size: 1.5em;
+    color: var(--primarytext);
 } 
 
 .card-actions {

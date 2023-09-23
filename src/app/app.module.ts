@@ -6,13 +6,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CartService } from './cart.service';
 import { APIService } from './connections/api.service';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
-import { StoresListPageComponent } from './pages/stores-list-page/stores-list-page.component';
-import { MaterialModule } from './utils/material.module';
 import { StorePageComponent } from './pages/store-page/store-page.component';
+import { StoresListPageComponent } from './pages/stores-list-page/stores-list-page.component';
+import { UserService } from './user.service';
+import { MaterialModule } from './utils/material.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { StorePageComponent } from './pages/store-page/store-page.component';
     RegistrationPageComponent,
     HomepageComponent,
     StoresListPageComponent,
-    StorePageComponent
+    StorePageComponent,
+    CartPageComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { StorePageComponent } from './pages/store-page/store-page.component';
     NgbCarouselModule
   ],
   providers: [
-    APIService
+    APIService,
+    CartService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

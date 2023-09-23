@@ -1,7 +1,10 @@
 PAGES:
+    - order page
     - personal page
-    - stores list page V
-    - store page
     - info page
 
+
+Rifare colori tema
 Tema Material
+Connessione carrello con server
+Aggiustare schede store page
