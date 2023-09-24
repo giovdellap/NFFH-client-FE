@@ -13,7 +13,7 @@
 }
 
 .title {
-    color: var(--onbackground);
+    color: var(--primary);
     font-size: 2.5em;
     font-weight: 800;
 }
@@ -26,14 +26,14 @@
 }
 
 .review-section {
-
+    width: 100%;
 }
 
 .order-part {
     border-style: outset;
     width: 100%;
     margin: 15px 0px;
-    border-color: var(--secondarytext);
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,6 +42,7 @@
 .seller-name {
     color: var(--primarytext);
     font-size: 1.8em;
+    padding-bottom: 10px;
 }
 
 .seller-location {
@@ -56,5 +57,30 @@
 .total-section {
     margin-top: 20px;
     color: var(--primarytext);
+    width: 100%;
+    margin-bottom: 40px;
 }
+
+.commission {
+    font-size: 1.3em;
+    padding-bottom: 15px;
+}
+
+.total {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.date-section {
+    width: 100%;
+
+}
+
+.date-section-title {
+    padding-bottom: 15px;
+    font-size: 1.3em;
+}
+
+
 
