@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { UserService } from '../user.service';
-import { Areas, BaseStore, HomepageCardResponse, LoginRequest, LoginResponse, StoreProducts, StoresListResponse } from './connectionTypes';
+import { Areas, BaseStore, Cart, HomepageCardResponse, LoginRequest, LoginResponse, Product, ProductAvailability, StoreProducts, StoresListResponse } from './connectionTypes';
+import { cart } from './mockObjects/cart';
 import { homepageCardsResponse } from './mockObjects/homepage';
 import { loginResponse } from './mockObjects/login';
 import { store, storeProducts1, storeProducts2 } from './mockObjects/store';
@@ -95,6 +96,36 @@ export class APIService {
       return new Observable<StoreProducts>(observer => {
         if(page === 1) observer.next(storeProducts1);
         if(page === 2) observer.next(storeProducts2);
+        observer.complete();
+      })
+    }
+  }
+
+  updateCart(cart: Cart) {
+    if(this.serviceMode == 1) {
+      return this.http.post(this.url+'/updatecart', cart);
+    } else {
+      return new Observable();
+    }
+  }
+
+  getCart() {
+    if(this.serviceMode == 1) {
+      return this.http.get<Cart>(this.url+'/getcart');
+    } else {
+      return new Observable<Cart>(observer => {
+        observer.next(cart);
+        observer.complete();
+      })
+    }
+  }
+
+  checkAvailability(product: Product) {
+    if(this.serviceMode == 1) {
+      return this.http.get<ProductAvailability>(this.url+'checkavailability?productid='+product.id+'&seller='+product.seller)
+    }else {
+      return new Observable<ProductAvailability>(observer => {
+        observer.next({ product: product, available: true });
         observer.complete();
       })
     }

@@ -2,6 +2,7 @@
  * LOGIN
  */
 
+import { CartProduct } from "../model/cart"
 import { HomepageCard } from "../model/homepage"
 
 export interface LoginRequest {
@@ -60,3 +61,24 @@ export interface StoreProducts {
     total: number
 }
 
+export interface Cart {
+    products: CartProduct[]
+}
+
+export interface OrderPart {
+    seller: string,
+    total: number
+}
+
+export interface Order {
+    parts: OrderPart[],
+    commission: number,
+    pickup: Date,
+    total: number,
+    completed: boolean
+}
+
+export interface ProductAvailability {
+    product: Product,
+    available: boolean
+}

@@ -16,6 +16,7 @@ import { StorePageComponent } from './pages/store-page/store-page.component';
 import { StoresListPageComponent } from './pages/stores-list-page/stores-list-page.component';
 import { UserService } from './user.service';
 import { MaterialModule } from './utils/material.module';
+import { OrderPageComponent } from './pages/order-page/order-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MaterialModule } from './utils/material.module';
     HomepageComponent,
     StoresListPageComponent,
     StorePageComponent,
-    CartPageComponent
+    CartPageComponent,
+    OrderPageComponent
   ],
   imports: [
     BrowserModule,

@@ -34,11 +34,15 @@
 .store-card {
     width: 30%;
     margin: 20px 0px;
-    background-color: var(--surface); 
+    background-color: var(--divider); 
 }
 
 .card-title {
     justify-content: center;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 2em;
+    padding-bottom: 15px;
 }
 
 .store-card img{
@@ -49,6 +53,8 @@
 
 .card-content {
     padding-top: 10px;
+    color: var(--secondarytext);
+
 }
 
 .paginator-container {

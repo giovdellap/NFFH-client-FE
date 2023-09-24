@@ -1,0 +1,37 @@
+<div class="main-container">
+    <div class="title-container">
+        <h1 class="title">ORDER REVIEW</h1>
+    </div>
+    <div class="order-container">
+        <div class="review-section">
+            <div class="order-part" *ngFor="let part of order.parts">
+                <div class="seller">
+                    <div class="seller-name">{{part.seller.name}}</div>
+                    <div class="seller-location">{{part.seller.location}}</div>
+                </div>
+                <div class="seller-total">{{part.total}} €</div>
+            </div>
+        </div>
+        <div class="total-section">
+            <div class="commission">Commission Charges: {{order.commission}} €</div>
+            <div class="total">TOTAL: {{order.total}} €</div>
+        </div>
+        <div class="date-section">
+            <div class="date-section-title">Select a date for pickup</div>
+            <div class="date-picker">
+                <mat-form-field>
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker>
+                        <mat-datepicker-actions></mat-datepicker-actions>
+                    </mat-datepicker>
+                  </mat-form-field>
+            </div>
+        </div>
+        <div class="confirm-section">
+            <button mat-button>CONFIRM ORDER</button>
+        </div>
+    </div>
+</div>

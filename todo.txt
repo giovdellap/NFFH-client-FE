@@ -6,5 +6,6 @@ PAGES:
 
 Rifare colori tema
 Tema Material
-Connessione carrello con server
-Aggiustare schede store page
+Aggiustare grafica carrello
+Fare elenco endpoint
+Aggiustare grafica pagination
