@@ -34,15 +34,15 @@
                 </mat-card-content>
                 <mat-card-actions class="card-actions">
                     <div class="quantity-picker">
-                        <button mat-icon-button (click)="newQuantity(item, false)" disabled="{{item.quantity === 0}}">
+                        <button mat-icon-button class="basic-button"
+                        (click)="newQuantity(item, false)" disabled="{{item.quantity === 0}}">
                             <mat-icon>remove</mat-icon>
                         </button>
-                        <p>{{item.quantity}}</p>
-                        <button mat-icon-button (click)="newQuantity(item, true)">
+                        <p class="quantity">{{item.quantity}}</p>
+                        <button mat-icon-button (click)="newQuantity(item, true)" class="basic-button">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
-                    <button mat-button class="buy-button">ADD TO CART</button>
                 </mat-card-actions>
             </mat-card>
         </div>

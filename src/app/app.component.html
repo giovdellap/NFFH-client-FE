@@ -1,25 +1,33 @@
 <mat-toolbar class="toolbar-flex">
-    
-    <div></div>
+    <button mat-fab class="homepage-button"
+        routerLink="/login"
+        ><mat-icon>agriculture</mat-icon>
+    </button>
+    <div class="divider"></div>
     <button *ngIf="logged"
-        mat-button color ="primary"
+        mat-fab 
+        class="basic-button-toolbar"
         routerLink="/cart"
-        >SHOPPING CART
+        ><mat-icon>shopping_cart</mat-icon>
     </button>    
     <button
-        mat-button color ="primary"
+        mat-fab
+        class="basic-button-toolbar"
         routerLink="/stores"
-        >STORES</button>
-    <button *ngIf="!logged; else notLogged"
-        mat-button color ="primary"
+        aria-label="Farmers"
+        ><mat-icon>storefront</mat-icon></button>
+    <button *ngIf="!logged; else isLogged"
+        mat-fab 
+        class="basic-button-toolbar"
         routerLink="/login"
-        >LOGIN
+        ><mat-icon>login</mat-icon>
     </button>
-    <ng-template #notLogged>
+    <ng-template #isLogged>
         <button
-            mat-button color ="primary"
+            mat-fab 
+            class="basic-button-toolbar"
             routerLink="/profile"
-            >Hi, {{name}}
+            ><mat-icon>account_circle</mat-icon>
         </button>
     </ng-template>
     

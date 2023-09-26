@@ -14,3 +14,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --divider: #F5F5F5;
     --background: #EEEEEE;
 }
+
+.basic-button {
+    background-color: var(--accent) !important;
+    color: var(--divider) !important;
+}

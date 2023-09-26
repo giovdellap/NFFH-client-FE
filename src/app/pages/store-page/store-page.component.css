@@ -95,16 +95,12 @@
     color: var(--primarytext);
 } 
 
-.card-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 .quantity-picker {
     display: flex;
     align-items: center;
-    width: 60%;
+    width: 100%;
     justify-content: space-around;
 }
 
@@ -112,4 +108,11 @@
     padding: 20px 0px;
     display: flex;
     justify-content: center;
+}
+
+.quantity {
+    font-size: 25px;
+    margin-top: 12px;
+    color: var(--darkprimary);
+    max-width: 70%;
 }

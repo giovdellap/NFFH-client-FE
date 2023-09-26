@@ -9,8 +9,7 @@
                     <img [src]="carouselImages[0]" alt="Random first slide" />
                 </div>
                 <div class="carousel-caption">
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h1>SOLO IL MEGLIO SULLA VOSTRA TAVOLA</h1>
                 </div>
             </ng-template>
             <ng-template ngbSlide>
@@ -18,8 +17,7 @@
                     <img [src]="carouselImages[1]" alt="Random second slide" />
                 </div>
                 <div class="carousel-caption">
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h1>DAL PRODUTTORE AL CONSUMATORE</h1>
                 </div>
             </ng-template>
             <ng-template ngbSlide>
@@ -27,8 +25,7 @@
                     <img [src]="carouselImages[2]" alt="Random second slide" />
                 </div>
                 <div class="carousel-caption">
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h1>YESSSSSSS</h1>
                 </div>
             </ng-template>
         </ngb-carousel>
@@ -47,14 +44,15 @@
                 <mat-card-content>
                     <p>{{card.description}}</p>
                     <div class="card-details">
-                        <p *ngIf="card.weight; else quantityBlock">Price: {{card.price}}/kg</p>
+                        <p class="price" *ngIf="card.weight; else quantityBlock">Price: {{card.price}}/kg</p>
                         <ng-template #quantityBlock>
-                            <p>Price: {{card.price}} each</p>
+                            <p class="price">Price: {{card.price}} each</p>
                         </ng-template>
                     </div>
                 </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>BUY NOW</button>
+                <mat-card-actions class="card-actions">
+                    <button mat-raised-button
+                    class="basic-button">BUY NOW</button>
                 </mat-card-actions>
             </mat-card>
         </div>
