@@ -20,23 +20,32 @@
                     </div>
                     <div class="product-right">
                         <div class="quantity-picker">
-                            <button mat-icon-button (click)="newQuantity(item, false)" disabled="{{item.quantity === 0}}">
+                            <button mat-mini-fab 
+                            class="quantity-picker-icon"
+                            (click)="newQuantity(item, false)" 
+                            disabled="{{item.quantity === 0}}">
                                 <mat-icon>remove</mat-icon>
                             </button>
                             <p>{{item.quantity}}</p>
-                            <button mat-icon-button (click)="newQuantity(item, true)">
+                            <button mat-mini-fab
+                            class="quantity-picker-icon" 
+                            (click)="newQuantity(item, true)">
                                 <mat-icon>add</mat-icon>
                             </button>
                         </div>
                         <div class="remove-button">
-                            <button mat-button (click)="removeItem(item)">REMOVE FROM CART</button>
+                            <button mat-raised-button 
+                            class="remove-btn"
+                            (click)="removeItem(item)">REMOVE FROM CART</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="confirm-button">
-            <button mat-button routerLink="/checkout">CHECKOUT</button>
+            <button mat-raised-button 
+            class="checkout"
+            routerLink="/checkout">CHECKOUT</button>
         </div>
     </div>
 </div>

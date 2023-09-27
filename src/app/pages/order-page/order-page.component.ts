@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { CartService } from 'src/app/cart.service';
 import { APIService } from 'src/app/connections/api.service';
 import { BaseStore, OrderPart } from 'src/app/connections/connectionTypes';
@@ -13,6 +14,10 @@ import { OrderPage, OrderPartPage } from 'src/app/model/order';
 export class OrderPageComponent {
 
   order: OrderPage = {} as OrderPage
+  datepicker: FormControl = new FormControl();
+  disabled = false;
+  startDate = new Date();
+  endDate = new Date();
 
   constructor(
     private api: APIService,
@@ -24,8 +29,14 @@ export class OrderPageComponent {
       this.api.checkAvailability(item.product).subscribe(res => pass = res.available);
       return pass;
     });
-
     this.order = this.generateOrderPage(cart);
+    this.endDate.setDate(this.endDate.getDate() + 2);
+    this.datepicker.valueChanges.subscribe(x => {
+      console.log(x)
+    })
+  }
+
+  confirmOrder() {
 
   }
 

@@ -56,7 +56,7 @@ export class APIService {
 
   getLocationsList() {
     if(this.serviceMode == 1) {
-      return this.http.get<Areas>(this.url+'/zones');
+      return this.http.get<Areas>(this.url+'/areas');
     } else {
       return new Observable<Areas>(observer => {
         observer.next(areasList);
@@ -91,7 +91,7 @@ export class APIService {
 
   getProducts(id: string, page: number) {
     if(this.serviceMode == 1) {
-      return this.http.get<StoreProducts>(this.url+'/store/'+id+'/products/'+page);
+      return this.http.get<StoreProducts>(this.url+'/products?id='+id+'&page='+page);
     } else {
       return new Observable<StoreProducts>(observer => {
         if(page === 1) observer.next(storeProducts1);
@@ -111,7 +111,7 @@ export class APIService {
 
   getCart() {
     if(this.serviceMode == 1) {
-      return this.http.get<Cart>(this.url+'/getcart');
+      return this.http.get<Cart>(this.url+'/cart');
     } else {
       return new Observable<Cart>(observer => {
         observer.next(cart);
@@ -122,7 +122,7 @@ export class APIService {
 
   checkAvailability(product: Product) {
     if(this.serviceMode == 1) {
-      return this.http.get<ProductAvailability>(this.url+'checkavailability?productid='+product.id+'&seller='+product.seller)
+      return this.http.get<ProductAvailability>(this.url+'availability?productid='+product.id+'&seller='+product.seller)
     }else {
       return new Observable<ProductAvailability>(observer => {
         observer.next({ product: product, available: true });

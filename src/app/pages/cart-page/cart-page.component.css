@@ -13,7 +13,7 @@
 }
 
 .title {
-    color: var(--onbackground);
+    color: var(--accent);
     font-size: 2.5em;
     font-weight: 800;
 }
@@ -37,13 +37,13 @@
 .store-name {
     font-size: 1.8em;
     font-weight: 600;
-    color: var(--onbackground);
+    color: var(--primary);
     padding-bottom: 20px;
 }
 
 .store-location {
     font-size: 1.5em;
-    color: var(--onbackground);
+    color: var(--secondarytext);
 }
 
 .products {
@@ -55,12 +55,41 @@
     justify-content: space-between;
     align-items: center;
     border-bottom-style: solid;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.product-title {
+    font-weight: 600;
+    font-size: 1.5em;
 }
 
 .quantity-picker {
     display: flex;
     align-items: center;
-    width: 60%;
+    width: 100%;
     justify-content: space-between;
+
+    margin-bottom: 10px;
 }
 
+.quantity-picker-icon {
+    color: var(--divider);
+    background-color: var(--accent);
+}
+
+.remove-btn {
+    color: var(--accent) !important;
+    background-color: var(--primarylight) !important;
+}
+
+.checkout {
+    color: var(--divider) !important;
+    background-color: var(--accent) !important;
+}
+
+.confirm-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
