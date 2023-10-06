@@ -10,6 +10,12 @@ export interface LoginRequest {
     password: string
 }
 
+export interface RegistrationRequest {
+    email: string,
+    password: string,
+    name: string
+}
+
 export interface LoginResponse {
     token: string,
     success: boolean,

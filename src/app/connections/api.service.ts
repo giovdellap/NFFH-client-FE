@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { UserService } from '../user.service';
-import { Areas, BaseStore, Cart, HomepageCardResponse, LoginRequest, LoginResponse, Product, ProductAvailability, StoreProducts, StoresListResponse } from './connectionTypes';
+import { Areas, BaseStore, Cart, HomepageCardResponse, LoginRequest, LoginResponse, Product, ProductAvailability, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
 import { cart } from './mockObjects/cart';
 import { homepageCardsResponse } from './mockObjects/homepage';
 import { loginResponse } from './mockObjects/login';
@@ -30,6 +30,26 @@ export class APIService {
         password: password
       }
       return this.http.post<LoginResponse>(this.url+'/login', req).pipe(
+        tap(x => this.user.setUser(x.token, x.name))
+      )
+    }
+    else {
+      this.user.setUser(loginResponse.token, loginResponse.name)
+      return new Observable<LoginResponse>(observer => {
+        observer.next(loginResponse);
+        observer.complete();
+      })
+    }
+  }
+
+  register(email: string, password: string, name: string) {
+    if (this.serviceMode == 1) {
+      const req: RegistrationRequest = {
+        email: email,
+        password: password,
+        name: name
+      }
+      return this.http.post<LoginResponse>(this.url+'/signup', req).pipe(
         tap(x => this.user.setUser(x.token, x.name))
       )
     }
