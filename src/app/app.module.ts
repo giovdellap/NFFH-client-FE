@@ -11,12 +11,13 @@ import { APIService } from './connections/api.service';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { OrderPageComponent } from './pages/order-page/order-page.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 import { StorePageComponent } from './pages/store-page/store-page.component';
 import { StoresListPageComponent } from './pages/stores-list-page/stores-list-page.component';
 import { UserService } from './user.service';
 import { MaterialModule } from './utils/material.module';
-import { OrderPageComponent } from './pages/order-page/order-page.component';
+import { PersonalAreaComponent } from './pages/personal-area/personal-area.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OrderPageComponent } from './pages/order-page/order-page.component';
     StoresListPageComponent,
     StorePageComponent,
     CartPageComponent,
-    OrderPageComponent
+    OrderPageComponent,
+    PersonalAreaComponent
   ],
   imports: [
     BrowserModule,

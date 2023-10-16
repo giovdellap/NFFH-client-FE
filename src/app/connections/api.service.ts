@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { Order } from '../model/order';
 import { UserService } from '../user.service';
-import { Areas, BaseStore, Cart, HomepageCardResponse, LoginRequest, LoginResponse, Product, ProductAvailability, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
+import { Areas, BaseStore, Cart, HomepageCardResponse, LoginRequest, LoginResponse, MyOrders, Product, ProductAvailability, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
 import { cart } from './mockObjects/cart';
 import { homepageCardsResponse } from './mockObjects/homepage';
 import { loginResponse } from './mockObjects/login';
+import { myOrders } from './mockObjects/personalpage';
 import { store, storeProducts1, storeProducts2 } from './mockObjects/store';
 import { areasList, storeslistresponse1, storeslistresponse2 } from './mockObjects/storesList';
 
@@ -142,10 +144,33 @@ export class APIService {
 
   checkAvailability(product: Product) {
     if(this.serviceMode == 1) {
-      return this.http.get<ProductAvailability>(this.url+'availability?productid='+product.id+'&seller='+product.seller)
+      return this.http.get<ProductAvailability>(this.url+'/availability?productid='+product.id+'&seller='+product.seller)
     }else {
       return new Observable<ProductAvailability>(observer => {
         observer.next({ product: product, available: true });
+        observer.complete();
+      })
+    }
+  }
+
+  completeOrder(order: Order) {
+    if(this.serviceMode == 1) {
+      return this.http.post<Order>(this.url +'/order', order)
+    } else {
+      return new Observable<Order>(observer => {
+        order.accepted = true;
+        observer.next(order);
+        observer.complete();
+      })
+    }
+  }
+
+  getOrders() {
+    if(this.serviceMode == 1) {
+      return this.http.get<MyOrders>(this.url+'/orders')
+    } else {
+      return new Observable<MyOrders>(observer => {
+        observer.next(myOrders);
         observer.complete();
       })
     }

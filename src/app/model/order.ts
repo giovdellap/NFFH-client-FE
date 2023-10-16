@@ -1,4 +1,5 @@
 import { BaseStore } from "../connections/connectionTypes";
+import { CartProduct } from "./cart";
 
 export interface OrderPartPage {
     seller: BaseStore,
@@ -11,4 +12,13 @@ export interface OrderPage {
     pickup: Date,
     total: number,
     completed: boolean
+}
+
+export interface Order {
+    products: CartProduct[],
+    commission: number,
+    pickup: Date,
+    total: number,
+    accepted: boolean,
+    withdrawn: boolean
 }

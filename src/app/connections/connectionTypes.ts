@@ -4,6 +4,7 @@
 
 import { CartProduct } from "../model/cart"
 import { HomepageCard } from "../model/homepage"
+import { Order } from "../model/order"
 
 export interface LoginRequest {
     email: string,
@@ -76,15 +77,11 @@ export interface OrderPart {
     total: number
 }
 
-export interface Order {
-    parts: OrderPart[],
-    commission: number,
-    pickup: Date,
-    total: number,
-    completed: boolean
-}
-
 export interface ProductAvailability {
     product: Product,
     available: boolean
+}
+
+export interface MyOrders {
+    orders: Order[]
 }
