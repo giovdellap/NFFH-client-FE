@@ -5,8 +5,8 @@
     <div class="cart-section">
         <div class="seller-section" *ngFor="let storecart of cartList">
             <div class="store">
-                <div class="store-name">{{storecart.seller.name}}</div>
-                <div class="store-location">{{storecart.seller.location}}</div>
+                <div class="store-name">{{storecart.seller.username}}</div>
+                <div class="store-location">{{storecart.seller.address}}</div>
             </div>
             <div class="products">
                 <div class="product" *ngFor="let item of storecart.products">
