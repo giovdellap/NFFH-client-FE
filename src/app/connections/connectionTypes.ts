@@ -64,7 +64,9 @@ export interface AreasItemResponse {
     areaName: string
 }
 
-
+export interface ProductResponse {
+    product: Product
+}
 
 export interface Product {
     id: string, 
@@ -73,7 +75,8 @@ export interface Product {
     image: string,
     description: string,
     price: number,
-    weight: boolean
+    weight: boolean,
+    availability: boolean
 }
 
 export interface StoreProducts {

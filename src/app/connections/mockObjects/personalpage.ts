@@ -12,7 +12,8 @@ const myOrders: MyOrders = {
                         image: '',
                         description: '',
                         price: 3,
-                        weight: true
+                        weight: true,
+                        availability: true
                     },
                     quantity: 3
                 },
@@ -24,7 +25,8 @@ const myOrders: MyOrders = {
                         image: '',
                         description: '',
                         price: 2,
-                        weight: true
+                        weight: true,
+                        availability: true
                     },
                     quantity: 3
                 }
@@ -45,7 +47,8 @@ const myOrders: MyOrders = {
                         image: '',
                         description: '',
                         price: 3,
-                        weight: true
+                        weight: true,
+                        availability: true
                     },
                     quantity: 3
                 },
@@ -57,7 +60,8 @@ const myOrders: MyOrders = {
                         image: '',
                         description: '',
                         price: 2,
-                        weight: true
+                        weight: true,
+                        availability: true
                     },
                     quantity: 3
                 }

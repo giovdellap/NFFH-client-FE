@@ -9,7 +9,8 @@ const cart: Cart = {
             image: 'https://www.finedininglovers.com/sites/g/files/xknfdk626/files/2022-06/Type%20of%20cucumber.jpg',
             description: 'Best cucumbers in the area!!',
             price: 1.50,
-            weight: true
+            weight: true,
+            availability: true
         },
         quantity: 3
     },
@@ -21,7 +22,8 @@ const cart: Cart = {
             image: 'https://cdn.cosedicasa.com/wp-content/uploads/2019/11/zucca.jpg',
             description: 'Only the best for your risotto',
             price: 3.50,
-            weight: false
+            weight: false,
+            availability: true
         },
         quantity: 2
     }]

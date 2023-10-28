@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, switchMap, tap } from 'rxjs';
 import { Order } from '../model/order';
 import { UserService } from '../user.service';
-import { Areas, AreasResponse, BaseStore, Cart, LoginRequest, LoginResponse, MyOrders, Product, ProductAvailability, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
+import { Areas, AreasItemResponse, BaseStore, Cart, LoginRequest, LoginResponse, MyOrders, Product, ProductAvailability, ProductResponse, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
 import { cart } from './mockObjects/cart';
 import { myOrders } from './mockObjects/personalpage';
 import { store, storeProducts1, storeProducts2 } from './mockObjects/store';
@@ -80,10 +80,10 @@ export class APIService {
 
   getLocationsList(): Observable<Areas> {
     if(this.serviceMode == 1) {
-      return this.http.get<AreasResponse>(this.url+'/area').pipe(
+      return this.http.get<AreasItemResponse[]>(this.url+'/area').pipe(
         switchMap(x => {
           var a: Areas = {areas: []}
-          x.areas.forEach(area => a.areas.push(area.areaName))
+          x.forEach(area => a.areas.push(area.areaName))
           return of(a)
         })
       )
@@ -151,7 +151,14 @@ export class APIService {
 
   checkAvailability(product: Product) {
     if(this.serviceMode == 1) {
-      return this.http.get<ProductAvailability>(this.url+'/availability?productid='+product.id+'&seller='+product.seller)
+      return this.http.get<ProductResponse>(this.url+'/product/'+product.id).pipe(
+        switchMap(x => {
+          var ret = {} as ProductAvailability
+          ret.available = x.product.availability
+          ret.product = x.product
+          return of(ret)
+        })
+      )
     }else {
       return new Observable<ProductAvailability>(observer => {
         observer.next({ product: product, available: true });
