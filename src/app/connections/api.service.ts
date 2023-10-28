@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { Order } from '../model/order';
 import { UserService } from '../user.service';
-import { Areas, BaseStore, Cart, HomepageCardResponse, LoginRequest, LoginResponse, MyOrders, Product, ProductAvailability, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
+import { Areas, BaseStore, Cart, LoginRequest, LoginResponse, MyOrders, Product, ProductAvailability, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
 import { cart } from './mockObjects/cart';
-import { homepageCardsResponse } from './mockObjects/homepage';
-import { loginResponse } from './mockObjects/login';
 import { myOrders } from './mockObjects/personalpage';
 import { store, storeProducts1, storeProducts2 } from './mockObjects/store';
 import { areasList, storeslistresponse1, storeslistresponse2 } from './mockObjects/storesList';
@@ -20,10 +18,12 @@ export class APIService {
    * 1 : API (connected to server)
    * 2: Mock
    */
-  serviceMode = 2;
-  url = "";
+  serviceMode = 1;
+  url = "http://0.0.0.0:8080";
 
-  constructor(private http: HttpClient, private user: UserService) { }
+  constructor(
+    private http: HttpClient, 
+    private user: UserService) { }
 
   login(email: string, password: string) {
     if (this.serviceMode == 1) {
@@ -31,14 +31,14 @@ export class APIService {
         email: email,
         password: password
       }
-      return this.http.post<LoginResponse>(this.url+'/login', req).pipe(
-        tap(x => this.user.setUser(x.token, x.name))
+      return this.http.post<LoginResponse>(this.url+'/client/login', req).pipe(
+        tap(x => this.user.setUser(x.token, x.id, x.email, x.username))
       )
     }
     else {
-      this.user.setUser(loginResponse.token, loginResponse.name)
+      //this.user.setUser(loginResponse.token, loginResponse.name)
       return new Observable<LoginResponse>(observer => {
-        observer.next(loginResponse);
+        observer.next({} as LoginResponse);
         observer.complete();
       })
     }
@@ -52,25 +52,27 @@ export class APIService {
         name: name
       }
       return this.http.post<LoginResponse>(this.url+'/signup', req).pipe(
-        tap(x => this.user.setUser(x.token, x.name))
+        tap(x => this.user.setUser(x.token, x.id, x.email, x.username))
       )
     }
     else {
-      this.user.setUser(loginResponse.token, loginResponse.name)
+      //this.user.setUser(loginResponse.token, loginResponse.name)
       return new Observable<LoginResponse>(observer => {
-        observer.next(loginResponse);
+        observer.next({} as LoginResponse);
         observer.complete();
       })
     }
   }
 
-  getHomepageCards() {
+  getHomepageCards(): Observable<StoreProducts> {
     if(this.serviceMode == 1) {
-      return this.http.get<HomepageCardResponse>(this.url+'/hpcards');
+      return this.http.get<StoresListResponse>(this.url + "/farmer/areas?area=Roma&page=1").pipe(
+        switchMap(x => this.http.get<StoreProducts>(this.url + "/product/findbyseller?seller="+x.stores[0].id+"&page=1"))
+      )
     }
     else {
-      return new Observable<HomepageCardResponse>(observer => {
-        observer.next(homepageCardsResponse);
+      return new Observable<StoreProducts>(observer => {
+        observer.next({} as StoreProducts);
         observer.complete();
       })
     }

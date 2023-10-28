@@ -17,7 +17,7 @@ export class HomepageComponent {
   constructor(private api: APIService) {
     this.carouselImages = [1, 2, 3].map((n) => `assets/media/hp-carousel-${n}.jpg`);
     this.api.getHomepageCards().subscribe(x => {
-      this.cards = x.cards;
+      this.cards = x.products;
       this.cardsAvailable = true;
     })
   }

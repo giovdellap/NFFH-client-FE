@@ -20,7 +20,9 @@ export interface RegistrationRequest {
 export interface LoginResponse {
     token: string,
     success: boolean,
-    name: string
+    username: string,
+    id: string,
+    email: string
 }
 
 /**
@@ -36,9 +38,9 @@ export interface HomepageCardResponse {
 
 export interface StoresListResponse {
     zone: string,
-    stores: BaseStore[],
     page: number,
-    total: number //number of pages
+    total: number, //number of pages
+    stores: BaseStore[]
 }
 
 export interface BaseStore {

@@ -15,7 +15,7 @@ export class AppComponent {
     this.user.getObservable().subscribe(x => {
       if (x) {
         this.logged = true;
-        this.name = this.user.getName();
+        this.name = this.user.getUsername();
       }
     })
   }
