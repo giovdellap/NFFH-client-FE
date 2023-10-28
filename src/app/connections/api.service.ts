@@ -49,7 +49,7 @@ export class APIService {
       const req: RegistrationRequest = {
         email: email,
         password: password,
-        name: name
+        username: name
       }
       return this.http.post<LoginResponse>(this.url+'/client/signup', req).pipe(
         tap(x => this.user.setUser(x.token, x.id, x.email, x.username))
