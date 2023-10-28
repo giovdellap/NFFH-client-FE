@@ -97,7 +97,7 @@ export class APIService {
 
   getStoresList(page: number, area: string) {
     if(this.serviceMode == 1) {
-      return this.http.get<StoresListResponse>(this.url+'/stores?area='+area+'&page='+page);
+      return this.http.get<StoresListResponse>(this.url+'/areas?area='+area+'&page='+page);
     }
     else {
       return new Observable<StoresListResponse>(observer => {
