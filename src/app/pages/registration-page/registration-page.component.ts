@@ -26,8 +26,10 @@ export class RegistrationPageComponent {
     if (this.registerForm.value.email !== '' && 
         this.registerForm.value.password !== '' &&
         this.registerForm.value.name !== '') {
-      this.apiService.login(
-        <string>this.registerForm.value.email, <string>this.registerForm.value.password)
+      this.apiService.register(
+        <string>this.registerForm.value.email, 
+        <string>this.registerForm.value.password, 
+        <string> this.registerForm.value.name)
         .subscribe(
         res => {
           console.log(res)
