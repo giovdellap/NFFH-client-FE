@@ -32,7 +32,7 @@ export class StoresListPageComponent {
     ).subscribe(res => {
       this.currentPage = res.page;
       this.total = res.total;
-      this.stores = res.farmers;
+      this.stores = res.stores;
       this.showError = res.total === 0;
     });
 
@@ -44,7 +44,7 @@ export class StoresListPageComponent {
     this.api.getStoresList(page, this.area).subscribe(res => {
       this.currentPage = res.page;
       this.total = res.total;
-      this.stores = res.farmers;
+      this.stores = res.stores;
     })
   } 
   

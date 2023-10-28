@@ -67,7 +67,7 @@ export class APIService {
   getHomepageCards(): Observable<StoreProducts> {
     if(this.serviceMode == 1) {
       return this.http.get<StoresListResponse>(this.url + "/farmer/areas?area=Roma&page=1").pipe(
-        switchMap(x => this.http.get<StoreProducts>(this.url + "/product/findbyseller?seller="+x.farmers[0].username+"&page=1"))
+        switchMap(x => this.http.get<StoreProducts>(this.url + "/product/findbyseller?seller="+x.stores[0].username+"&page=1"))
       )
     }
     else {

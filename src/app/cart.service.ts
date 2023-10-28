@@ -18,7 +18,7 @@ export class CartService {
     private cookie: CookieService
     ) {
     if (this.cookie.check("cart")) {
-      //this.cart = this.cookie.get("cart").toString()
+      //this.cart =  this.cookie.get("cart").toString()
     }
   }
 
