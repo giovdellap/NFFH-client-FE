@@ -51,7 +51,7 @@ export class APIService {
         password: password,
         name: name
       }
-      return this.http.post<LoginResponse>(this.url+'/signup', req).pipe(
+      return this.http.post<LoginResponse>(this.url+'/client/signup', req).pipe(
         tap(x => this.user.setUser(x.token, x.id, x.email, x.username))
       )
     }
