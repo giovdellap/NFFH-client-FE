@@ -6,7 +6,7 @@ const areasList: Areas = {
 
 const storeslistresponse1: StoresListResponse = {
     zone: 'Rome',
-    stores: [
+    farmers: [
         {
             id: '1',
             username: 'Az. Agr. Di Giacomo',

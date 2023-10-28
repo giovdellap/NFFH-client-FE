@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { APIService } from './connections/api.service';
 import { Product } from './connections/connectionTypes';
 import { CartProduct } from './model/cart';
@@ -11,14 +12,14 @@ export class CartService {
 
   cart: CartProduct[] = [];
 
-  constructor(private api: APIService, private user: UserService) {
-    this.user.getObservable().subscribe(x => {
-      if(x) {
-        this.api.getCart().subscribe(res => {
-          this.cart = res.products;
-        })
-      }
-    })
+  constructor(
+    private api: APIService, 
+    private user: UserService,
+    private cookie: CookieService
+    ) {
+    if (this.cookie.check("cart")) {
+      //this.cart = this.cookie.get("cart").toString()
+    }
   }
 
   updateProduct(product: Product, quantity: number) {
@@ -46,7 +47,7 @@ export class CartService {
         quantity: quantity
       });
     }
-    this.api.updateCart({products: this.cart}).subscribe();
+    //this.api.updateCart({products: this.cart}).subscribe();
   }
 
   checkProduct(product: Product) {

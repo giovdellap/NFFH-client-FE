@@ -40,7 +40,7 @@ export interface StoresListResponse {
     zone: string,
     page: number,
     total: number, //number of pages
-    stores: BaseStore[]
+    farmers: BaseStore[]
 }
 
 export interface BaseStore {
