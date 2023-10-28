@@ -2,9 +2,10 @@ import { BaseStore, Product, StoreProducts } from "../connectionTypes";
 
 const store: BaseStore = {
     id: '22',
-    name: 'Le verdure der pupone',
+    username: 'Le verdure der pupone',
     image: 'https://prd-images2-gazzanet.gazzettaobjects.it/Vrx_zCddELufYaisByBKQyudaAM=/712x402/smart/www.mediagol.it/assets/uploads/201911/gettyimages-689445278.jpg',
-    location: 'Via Zagarolese, 00132 Roma RM'
+    address: 'Via Zagarolese, 00132 Roma RM',
+    area: 'Rome'
 }
 
 const products: Product[] = [

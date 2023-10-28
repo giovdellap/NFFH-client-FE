@@ -24,7 +24,7 @@ export class PersonalAreaComponent {
       this.orders.forEach(order => {
         order.products.forEach(prod => {
           var seller = this.sellers.find(store => store.id === prod.product.seller)
-          prod.product.seller = seller?.name || '';
+          prod.product.seller = seller?.username || '';
         })
       })
     })

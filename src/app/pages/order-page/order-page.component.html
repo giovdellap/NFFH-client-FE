@@ -12,8 +12,8 @@
         <div class="review-section">
             <div class="order-part" *ngFor="let part of order.parts">
                 <div class="seller">
-                    <div class="seller-name">{{part.seller.name}}</div>
-                    <div class="seller-location">{{part.seller.location}}</div>
+                    <div class="seller-name">{{part.seller.username}}</div>
+                    <div class="seller-location">{{part.seller.address}}</div>
                 </div>
                 <div class="seller-total">{{part.total}} €</div>
             </div>

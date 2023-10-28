@@ -45,14 +45,26 @@ export interface StoresListResponse {
 
 export interface BaseStore {
     id: string,
-    name: string,
+    username: string,
     image: string,
-    location: string
+    address: string,
+    area: string
 }
 
 export interface Areas {
     areas: string[]
 }
+
+export interface AreasResponse {
+    areas: AreasItemResponse[]
+}
+
+export interface AreasItemResponse {
+    id: string,
+    areaName: string
+}
+
+
 
 export interface Product {
     id: string, 

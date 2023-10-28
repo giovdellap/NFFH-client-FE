@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, of, switchMap, tap } from 'rxjs';
 import { Order } from '../model/order';
 import { UserService } from '../user.service';
-import { Areas, BaseStore, Cart, LoginRequest, LoginResponse, MyOrders, Product, ProductAvailability, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
+import { Areas, AreasResponse, BaseStore, Cart, LoginRequest, LoginResponse, MyOrders, Product, ProductAvailability, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
 import { cart } from './mockObjects/cart';
 import { myOrders } from './mockObjects/personalpage';
 import { store, storeProducts1, storeProducts2 } from './mockObjects/store';
-import { areasList, storeslistresponse1, storeslistresponse2 } from './mockObjects/storesList';
+import { areasList, storeslistresponse1, } from './mockObjects/storesList';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +67,7 @@ export class APIService {
   getHomepageCards(): Observable<StoreProducts> {
     if(this.serviceMode == 1) {
       return this.http.get<StoresListResponse>(this.url + "/farmer/areas?area=Roma&page=1").pipe(
-        switchMap(x => this.http.get<StoreProducts>(this.url + "/product/findbyseller?seller="+x.stores[0].id+"&page=1"))
+        switchMap(x => this.http.get<StoreProducts>(this.url + "/product/findbyseller?seller="+x.stores[0].username+"&page=1"))
       )
     }
     else {
@@ -78,9 +78,15 @@ export class APIService {
     }
   }
 
-  getLocationsList() {
+  getLocationsList(): Observable<Areas> {
     if(this.serviceMode == 1) {
-      return this.http.get<Areas>(this.url+'/areas');
+      return this.http.get<AreasResponse>(this.url+'/area').pipe(
+        switchMap(x => {
+          var a: Areas = {areas: []}
+          x.areas.forEach(area => a.areas.push(area.areaName))
+          return of(a)
+        })
+      )
     } else {
       return new Observable<Areas>(observer => {
         observer.next(areasList);
@@ -91,12 +97,11 @@ export class APIService {
 
   getStoresList(page: number, area: string) {
     if(this.serviceMode == 1) {
-      return this.http.get<StoresListResponse>(this.url+'/stores?zone='+area+'&page='+page);
+      return this.http.get<StoresListResponse>(this.url+'/stores?area='+area+'&page='+page);
     }
     else {
       return new Observable<StoresListResponse>(observer => {
         if(page === 1) observer.next(storeslistresponse1);
-        if(page === 2) observer.next(storeslistresponse2);
         observer.complete();
       })
     }
@@ -104,7 +109,7 @@ export class APIService {
 
   getStore(id: string) {
     if(this.serviceMode == 1) {
-      return this.http.get<BaseStore>(this.url+'/store/'+id);
+      return this.http.get<BaseStore>(this.url+'/farmerLight/'+id);
     } else {
       return new Observable<BaseStore>(observer => {
         observer.next(store);
@@ -113,9 +118,9 @@ export class APIService {
     }
   }
 
-  getProducts(id: string, page: number) {
+  getProducts(username: string, page: number) {
     if(this.serviceMode == 1) {
-      return this.http.get<StoreProducts>(this.url+'/products?id='+id+'&page='+page);
+      return this.http.get<StoreProducts>(this.url+'/products?id='+username+'&page='+page);
     } else {
       return new Observable<StoreProducts>(observer => {
         if(page === 1) observer.next(storeProducts1);

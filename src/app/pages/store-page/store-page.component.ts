@@ -31,8 +31,8 @@ export class StorePageComponent {
     this.storeID = String(this.route.snapshot.paramMap.get('id'));
     this.api.getStore(this.storeID).pipe(
       tap(res => {
-        this.name = res.name;
-        this.location = res.location;
+        this.name = res.username;
+        this.location = res.address;
         this.image = res.image;
         this.mapsURL = this.mapsURL + encodeURI(this.location);
       }),

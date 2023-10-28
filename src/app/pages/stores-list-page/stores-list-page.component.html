@@ -15,11 +15,11 @@
         <div class="cards-container">
             <mat-card class="store-card" *ngFor="let store of stores" routerLink="/store/{{store.id}}">
                 <mat-card-header class="card-title">
-                    <mat-card-title>{{store.name}}</mat-card-title>
+                    <mat-card-title>{{store.username}}</mat-card-title>
                 </mat-card-header>
                 <img mat-card-image src={{store.image}}>
                 <mat-card-content class="card-content">
-                    <p>{{store.location}}</p>
+                    <p>{{store.address}}</p>
                 </mat-card-content>
             </mat-card>
         </div>
