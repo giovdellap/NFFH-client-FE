@@ -3,7 +3,7 @@
         <p>Connection error - Please try again</p>
     </div>
     <div class="success-container" *ngIf="completed">
-        <h1>Order completed. Check the details in your personal area</h1>
+        <h1>Order completed</h1>
     </div>
     <div class="title-container" *ngIf="!completed">
         <h1 class="title">ORDER REVIEW</h1>
@@ -18,10 +18,10 @@
                 <div class="seller-total">{{part.total}} €</div>
             </div>
         </div>
-        <div class="total-section">
+        <!-- <div class="total-section">
             <div class="commission">Commission Charges: {{order.commission}} €</div>
             <div class="total">TOTAL: {{order.total}} €</div>
-        </div>
+        </div> -->
         <div class="date-section">
             <div class="date-section-title">Select a date for pickup</div>
             <div class="date-picker">

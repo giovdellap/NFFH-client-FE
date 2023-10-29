@@ -6,6 +6,7 @@ import { APIService } from 'src/app/connections/api.service';
 import { BaseStore, OrderPart } from 'src/app/connections/connectionTypes';
 import { CartProduct } from 'src/app/model/cart';
 import { OrderPage, OrderPartPage } from 'src/app/model/order';
+import { modifyString } from 'src/app/utils/stringmakeup';
 
 @Component({
   selector: 'app-order-page',
@@ -76,10 +77,13 @@ export class OrderPageComponent {
 
     var req: Observable<BaseStore>[] = []
     sellers.forEach(seller => req.push(this.api.getStore(seller).pipe(
-      tap(s => parts.push({
-        seller: s,
+      tap(s => {
+        var temp = s
+        temp.username = modifyString(s.username)
+        parts.push({
+        seller: temp,
         total: 0
-      }))
+      })})
     )))
     forkJoin(req).subscribe(x => cart.forEach(item => {
       var temp = parts.find(part => part.seller.username === item.product.seller)

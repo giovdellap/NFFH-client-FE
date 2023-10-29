@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartService } from 'src/app/cart.service';
 import { APIService } from 'src/app/connections/api.service';
 import { CartProduct, StoreCart } from 'src/app/model/cart';
+import { modifyString } from 'src/app/utils/stringmakeup';
 
 @Component({
   selector: 'app-cart-page',
@@ -28,8 +29,10 @@ export class CartPageComponent {
         this.cartList[this.cartList.indexOf(listItem)].products.push(item);
       } else {
         this.api.getStore(item.product.seller).subscribe(store => {
+          var temp = store
+          temp.username = modifyString(store.username)
           this.cartList.push({
-            seller: store,
+            seller: temp,
             products: [item]
           })
         })
