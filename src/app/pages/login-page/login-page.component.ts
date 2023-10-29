@@ -30,7 +30,7 @@ export class LoginPageComponent {
         res => {
           console.log(res)
           this.displayError = !res.success;     
-          if (res) {
+          if (res.success) {
             this.router.navigate([""]);
           }     
         }

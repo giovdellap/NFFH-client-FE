@@ -32,7 +32,11 @@ export class APIService {
         password: password
       }
       return this.http.post<LoginResponse>(this.url+'/client/login', req).pipe(
-        tap(x => this.user.setUser(x.token, x.id, x.email, x.username))
+        tap(x => {
+          if(x.success) {
+            this.user.setUser(x.token, x.id, x.email, x.username)
+          }
+        })
       )
     }
     else {
