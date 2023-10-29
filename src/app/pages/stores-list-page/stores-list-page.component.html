@@ -13,7 +13,7 @@
     </div>
     <div class="cards-section" *ngIf="!showError; else errorBlock">
         <div class="cards-container">
-            <mat-card class="store-card" *ngFor="let store of stores" routerLink="/store/{{store.id}}">
+            <mat-card class="store-card" *ngFor="let store of stores" routerLink="/store/{{store.username}}">
                 <mat-card-header class="card-title">
                     <mat-card-title>{{store.username}}</mat-card-title>
                 </mat-card-header>

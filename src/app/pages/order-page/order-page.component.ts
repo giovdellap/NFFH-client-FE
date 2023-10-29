@@ -84,7 +84,7 @@ export class OrderPageComponent {
         list[list.indexOf(listElem)].products.push(item);
       } else {
         var seller = {} as BaseStore;
-        this.api.getStore(item.product.id).subscribe(x => seller = x);
+        this.api.getStore(item.product.seller).subscribe(x => seller = x);
         list.push({
           seller: seller,
           products: [item]

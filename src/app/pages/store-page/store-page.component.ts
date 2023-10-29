@@ -28,8 +28,8 @@ export class StorePageComponent {
     private cart: CartService,
     private route: ActivatedRoute
   ) {
-    this.storeID = String(this.route.snapshot.paramMap.get('id'));
-    this.api.getStore(this.storeID).pipe(
+    this.name = String(this.route.snapshot.paramMap.get('name'));
+    this.api.getStore(this.name).pipe(
       tap(res => {
         this.name = res.username;
         this.location = res.address;
