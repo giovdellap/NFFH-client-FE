@@ -88,11 +88,12 @@ export class OrderPageComponent {
       parts[parts.indexOf(temp || {} as OrderPartPage)].total = total
     }))
 
-
+    console.log(parts)
     //generate numbers
     const totalNoCommissions = parts.reduce((accumulator, currentValue) => accumulator + currentValue.total, 0)
     const commission = totalNoCommissions * 0.05;
-    const total = totalNoCommissions + commission; 
+    const total = totalNoCommissions + commission;
+    console.log(totalNoCommissions, commission) 
     return {
       parts: parts,
       commission: commission,
