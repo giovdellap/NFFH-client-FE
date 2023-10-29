@@ -126,7 +126,8 @@ export class APIService {
 
   getProducts(username: string, page: number) {
     if(this.serviceMode == 1) {
-      return this.http.get<StoreProducts>(this.url+'/product/findbyseller?seller='+username+'&page='+page);
+      var temp = revertString(username)
+      return this.http.get<StoreProducts>(this.url+'/product/findbyseller?seller='+temp+'&page='+page);
     } else {
       return new Observable<StoreProducts>(observer => {
         if(page === 1) observer.next(storeProducts1);
