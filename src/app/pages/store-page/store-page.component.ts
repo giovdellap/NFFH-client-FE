@@ -36,7 +36,7 @@ export class StorePageComponent {
         this.image = res.image;
         this.mapsURL = this.mapsURL + encodeURI(this.location);
       }),
-      switchMap(res => this.api.getProducts(this.storeID, 1))
+      switchMap(res => this.api.getProducts(this.name, 1))
     ).subscribe(res => {
       this.page = res.page;
       this.total = res.total;
