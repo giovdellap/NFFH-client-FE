@@ -102,3 +102,8 @@ export interface ProductAvailability {
 export interface MyOrders {
     orders: Order[]
 }
+
+export interface OrderResponse {
+    success: boolean,
+    orderID: string
+}

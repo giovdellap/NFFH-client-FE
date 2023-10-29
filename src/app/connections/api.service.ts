@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, switchMap, tap } from 'rxjs';
-import { Order } from '../model/order';
+import { OrderDTO, OrderPage, OrderPartDTO } from '../model/order';
 import { UserService } from '../user.service';
-import { Areas, AreasItemResponse, BaseStore, Cart, LoginRequest, LoginResponse, MyOrders, Product, ProductAvailability, ProductResponse, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
+import { Areas, AreasItemResponse, BaseStore, Cart, LoginRequest, LoginResponse, MyOrders, OrderResponse, Product, ProductAvailability, ProductResponse, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
 import { cart } from './mockObjects/cart';
 import { myOrders } from './mockObjects/personalpage';
 import { store, storeProducts1, storeProducts2 } from './mockObjects/store';
@@ -169,15 +169,27 @@ export class APIService {
     }
   }
 
-  completeOrder(order: Order) {
-    if(this.serviceMode == 1) {
-      return this.http.post<Order>(this.url +'/order', order)
-    } else {
-      return new Observable<Order>(observer => {
-        order.accepted = true;
-        observer.next(order);
-        observer.complete();
-      })
+  completeOrder(order: OrderPage): Observable<OrderResponse> {
+    return this.http.post<OrderResponse>(
+      this.url +'/order', 
+      this.fromOrderPagetoOrderDTO(order))
+ 
+  }
+
+  fromOrderPagetoOrderDTO(order: OrderPage): OrderDTO {
+    var parts: OrderPartDTO[] = []
+    order.parts.forEach(x => parts.push({
+      seller: parseInt(x.seller.id),
+      productList: x.total.toString()
+    }))
+
+    return {
+      client: parseInt(this.user.getId()),
+      commission: order.commission,
+      pickup: order.pickup.toString(),
+      accepted: true,
+      total: order.total,
+      orderpart: parts
     }
   }
 

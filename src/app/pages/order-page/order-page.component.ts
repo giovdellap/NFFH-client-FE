@@ -5,7 +5,7 @@ import { CartService } from 'src/app/cart.service';
 import { APIService } from 'src/app/connections/api.service';
 import { BaseStore, OrderPart } from 'src/app/connections/connectionTypes';
 import { CartProduct } from 'src/app/model/cart';
-import { Order, OrderPage, OrderPartPage } from 'src/app/model/order';
+import { OrderPage, OrderPartPage } from 'src/app/model/order';
 
 @Component({
   selector: 'app-order-page',
@@ -39,16 +39,9 @@ export class OrderPageComponent {
   }
 
   confirmOrder() {
-    var toSend: Order = {
-      products: this.cartService.getCart(),
-      commission: this.order.commission,
-      pickup: this.datepicker.value,
-      total: this.order.total,
-      accepted: false,
-      withdrawn: false
-    }
-    this.api.completeOrder(toSend).subscribe(res => {
-      if (res.accepted) {
+
+    this.api.completeOrder(this.order).subscribe(res => {
+      if (res.success) {
         this.completed = true;
       } else {
         this.error = true;
