@@ -5,6 +5,7 @@ import { CartService } from 'src/app/cart.service';
 import { APIService } from 'src/app/connections/api.service';
 import { Product } from 'src/app/connections/connectionTypes';
 import { CartProduct } from 'src/app/model/cart';
+import { modifyString } from 'src/app/utils/stringmakeup';
 
 @Component({
   selector: 'app-store-page',
@@ -32,7 +33,9 @@ export class StorePageComponent {
     this.api.getStore(this.name).pipe(
       tap(res => {
         this.name = res.username;
+        this.name = modifyString(this.name)
         this.location = res.address;
+        this.location = modifyString(this.location)
         this.image = res.image;
         this.mapsURL = this.mapsURL + encodeURI(this.location);
       }),

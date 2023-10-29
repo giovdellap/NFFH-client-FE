@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { switchMap, tap } from 'rxjs';
 import { BaseStore } from 'src/app/connections/connectionTypes';
+import { modifyString } from 'src/app/utils/stringmakeup';
 import { APIService } from '../../connections/api.service';
 
 @Component({
@@ -33,6 +34,7 @@ export class StoresListPageComponent {
       this.currentPage = res.page;
       this.total = res.total;
       this.stores = res.stores;
+      this.stores.forEach(item => item.username = modifyString(item.username))
       this.showError = res.total === 0;
       console.log('oooh', this.stores)
     });
@@ -46,6 +48,8 @@ export class StoresListPageComponent {
       this.currentPage = res.page;
       this.total = res.total;
       this.stores = res.stores;
+      this.stores.forEach(item => item.username = modifyString(item.username))
+
     })
   } 
   
