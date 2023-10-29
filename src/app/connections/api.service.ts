@@ -182,14 +182,14 @@ export class APIService {
       seller: parseInt(x.seller.id),
       productList: x.total.toString()
     }))
-
+    console.log(this.user.getId(), 'penn')
     return {
       client: parseInt(this.user.getId()),
       commission: order.commission,
       pickup: order.pickup.toString(),
       accepted: true,
       total: order.total,
-      orderpart: parts
+      orderPart: parts
     }
   }
 

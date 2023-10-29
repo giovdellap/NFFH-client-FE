@@ -34,5 +34,5 @@ export interface OrderDTO {
     pickup: string,
     total: number,
     accepted: boolean,
-    orderpart: OrderPartDTO[]
+    orderPart: OrderPartDTO[]
 }
