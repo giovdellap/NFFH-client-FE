@@ -34,6 +34,7 @@ export class StoresListPageComponent {
       this.total = res.total;
       this.stores = res.stores;
       this.showError = res.total === 0;
+      console.log('oooh', this.stores)
     });
 
   }

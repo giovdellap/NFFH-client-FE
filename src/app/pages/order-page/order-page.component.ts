@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable, forkJoin, tap } from 'rxjs';
 import { CartService } from 'src/app/cart.service';
 import { APIService } from 'src/app/connections/api.service';
-import { BaseStore, OrderPart } from 'src/app/connections/connectionTypes';
+import { BaseStore, OrderPart, ProductAvailability } from 'src/app/connections/connectionTypes';
 import { CartProduct, StoreCart } from 'src/app/model/cart';
 import { Order, OrderPage, OrderPartPage } from 'src/app/model/order';
 
@@ -27,16 +28,14 @@ export class OrderPageComponent {
     private cartService: CartService
   ) {
     var cart = this.cartService.getCart();
-    cart.filter(item => {
-      var pass = false;
-      this.api.checkAvailability(item.product).subscribe(res => pass = res.available);
-      return pass;
-    });
+
+  
     this.order = this.generateOrderPage(cart);
     this.endDate.setDate(this.endDate.getDate() + 2);
     this.datepicker.valueChanges.subscribe(x => {
       console.log(x)
     })
+    console.log('order', this.order)
   }
 
   confirmOrder() {
@@ -79,16 +78,14 @@ export class OrderPageComponent {
     //generate StoreCart[]
     var list: StoreCart[] = [];
     cart.forEach(item => {
-      var listElem = list.find(x => x.seller.id == item.product.seller);
+      var listElem = list.find(x => x.seller.username == item.product.seller);
       if(listElem) {
         list[list.indexOf(listElem)].products.push(item);
       } else {
-        var seller = {} as BaseStore;
-        this.api.getStore(item.product.seller).subscribe(x => seller = x);
-        list.push({
-          seller: seller,
+        this.api.getStore(item.product.seller).subscribe(x => list.push({
+          seller: x,
           products: [item]
-        });
+        }));
       }
     })
 

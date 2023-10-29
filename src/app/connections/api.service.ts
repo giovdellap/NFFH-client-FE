@@ -107,9 +107,9 @@ export class APIService {
     }
   }
 
-  getStore(id: string) {
+  getStore(name: string) {
     if(this.serviceMode == 1) {
-      return this.http.get<BaseStore>(this.url+'/farmerLight/'+id);
+      return this.http.get<BaseStore>(this.url+'/farmerLight/'+name);
     } else {
       return new Observable<BaseStore>(observer => {
         observer.next(store);
@@ -149,14 +149,16 @@ export class APIService {
     }
   }
 
-  checkAvailability(product: Product) {
+  checkAvailability(product: Product): Observable<ProductAvailability> {
     if(this.serviceMode == 1) {
       return this.http.get<ProductResponse>(this.url+'/product/'+product.id).pipe(
         switchMap(x => {
-          var ret = {} as ProductAvailability
-          ret.available = x.product.availability
-          ret.product = x.product
-          return of(ret)
+
+          return of({
+
+            available : x.product.availability,
+            product : x.product
+          })
         })
       )
     }else {
