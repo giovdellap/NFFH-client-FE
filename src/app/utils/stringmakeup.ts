@@ -1,3 +1,3 @@
 export function modifyString(str: string) {
-    return str.replace('_', ' ')
+    return str.replaceAll('_', ' ')
 }
