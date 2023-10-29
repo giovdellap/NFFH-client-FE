@@ -120,7 +120,7 @@ export class APIService {
 
   getProducts(username: string, page: number) {
     if(this.serviceMode == 1) {
-      return this.http.get<StoreProducts>(this.url+'/products?id='+username+'&page='+page);
+      return this.http.get<StoreProducts>(this.url+'/product?id='+username+'&page='+page);
     } else {
       return new Observable<StoreProducts>(observer => {
         if(page === 1) observer.next(storeProducts1);
