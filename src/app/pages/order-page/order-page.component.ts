@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Observable, forkJoin, tap } from 'rxjs';
 import { CartService } from 'src/app/cart.service';
 import { APIService } from 'src/app/connections/api.service';
-import { BaseStore, OrderPart, ProductAvailability } from 'src/app/connections/connectionTypes';
-import { CartProduct, StoreCart } from 'src/app/model/cart';
+import { BaseStore, OrderPart } from 'src/app/connections/connectionTypes';
+import { CartProduct } from 'src/app/model/cart';
 import { Order, OrderPage, OrderPartPage } from 'src/app/model/order';
 
 @Component({
@@ -75,27 +75,26 @@ export class OrderPageComponent {
 
   generateOrderPage(cart: CartProduct[]): OrderPage {
     
-    //generate StoreCart[]
-    var list: StoreCart[] = [];
+    var parts: OrderPartPage[] = []
+    var sellers: string[] = []
     cart.forEach(item => {
-      var listElem = list.find(x => x.seller.username == item.product.seller);
-      if(listElem) {
-        list[list.indexOf(listElem)].products.push(item);
-      } else {
-        this.api.getStore(item.product.seller).subscribe(x => list.push({
-          seller: x,
-          products: [item]
-        }));
-      }
+      if(!sellers.find(i => i === item.product.seller)) sellers.push(item.product.seller)
     })
 
-    //generate OrderPartPage[]
-    var parts: OrderPartPage[] = []
-    list.forEach(storecart => {
-      var total = 0;
-      storecart.products.forEach(prod => total = total + (prod.product.price * prod.quantity));
-      parts.push({ seller: storecart.seller, total: total })
-    })
+    var req: Observable<BaseStore>[] = []
+    sellers.forEach(seller => req.push(this.api.getStore(seller).pipe(
+      tap(s => parts.push({
+        seller: s,
+        total: 0
+      }))
+    )))
+    forkJoin(req).subscribe(x => cart.forEach(item => {
+      var temp = parts.find(part => part.seller.username === item.product.seller)
+      var total = parts[parts.indexOf(temp || {} as OrderPartPage)].total
+      total = total + item.product.price * item.quantity
+      parts[parts.indexOf(temp || {} as OrderPartPage)].total = total
+    }))
+
 
     //generate numbers
     const totalNoCommissions = parts.reduce((accumulator, currentValue) => accumulator + currentValue.total, 0)
