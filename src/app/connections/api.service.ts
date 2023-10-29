@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, switchMap, tap } from 'rxjs';
 import { OrderDTO, OrderPage, OrderPartDTO } from '../model/order';
 import { UserService } from '../user.service';
+import { revertString } from '../utils/stringmakeup';
 import { Areas, AreasItemResponse, BaseStore, Cart, LoginRequest, LoginResponse, MyOrders, OrderResponse, Product, ProductAvailability, ProductResponse, RegistrationRequest, StoreProducts, StoresListResponse } from './connectionTypes';
 import { cart } from './mockObjects/cart';
 import { myOrders } from './mockObjects/personalpage';
@@ -113,7 +114,8 @@ export class APIService {
 
   getStore(name: string) {
     if(this.serviceMode == 1) {
-      return this.http.get<BaseStore>(this.url+'/farmerLight/'+name);
+      var temp = revertString(name)
+      return this.http.get<BaseStore>(this.url+'/farmerLight/'+temp);
     } else {
       return new Observable<BaseStore>(observer => {
         observer.next(store);
