@@ -36,7 +36,6 @@ export class StoresListPageComponent {
       this.stores = res.stores;
       this.stores.forEach(item => item.username = modifyString(item.username))
       this.showError = res.total === 0;
-      console.log('oooh', this.stores)
     });
 
   }
