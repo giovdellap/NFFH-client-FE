@@ -86,8 +86,10 @@ export class OrderPageComponent {
       })})
     )))
     forkJoin(req).subscribe(x => cart.forEach(item => {
-      var temp = parts.find(part => part.seller.username === item.product.seller)
+      var tempUsername = modifyString(item.product.seller)
+      var temp = parts.find(part => part.seller.username === tempUsername)
       var total = parts[parts.indexOf(temp || {} as OrderPartPage)].total
+      console.log(item)
       total = total + item.product.price * item.quantity
       parts[parts.indexOf(temp || {} as OrderPartPage)].total = total
     }))
